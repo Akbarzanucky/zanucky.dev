@@ -719,30 +719,39 @@
                 if (e.target.closest("button")) return;
                 burst(e.clientX, e.clientY, 10);
             });
-            document.getElementById("boost").onclick = (e) => {
-                load(13 + Math.random() * 9);
-                burst(e.clientX, e.clientY, 18);
-                note("Loader boosted. Still coming soon.");
-            };
-            document.getElementById("glitch").onclick = (e) => {
-                document.body.animate(
-                    [
-                        { filter: "hue-rotate(0deg) contrast(1)" },
-                        { filter: "hue-rotate(75deg) contrast(1.35)" },
-                        { filter: "hue-rotate(-35deg) contrast(1.15)" },
-                        { filter: "hue-rotate(0deg) contrast(1)" },
-                    ],
-                    { duration: 420, easing: "steps(3)" },
-                );
-                burst(e.clientX, e.clientY, 22);
-                note("Reality briefly desynced");
-            };
-            document.getElementById("theme").onclick = (e) => {
-                pal = (pal + 1) % palettes.length;
-                setPal(palettes[pal]);
-                burst(e.clientX, e.clientY, 16);
-                note("Color matrix shifted");
-            };
+            const boostButton = document.getElementById("boost"),
+                glitchButton = document.getElementById("glitch"),
+                themeButton = document.getElementById("theme");
+            if (boostButton) {
+                boostButton.onclick = (e) => {
+                    load(13 + Math.random() * 9);
+                    burst(e.clientX, e.clientY, 18);
+                    note("Loader boosted. Still coming soon.");
+                };
+            }
+            if (glitchButton) {
+                glitchButton.onclick = (e) => {
+                    document.body.animate(
+                        [
+                            { filter: "hue-rotate(0deg) contrast(1)" },
+                            { filter: "hue-rotate(75deg) contrast(1.35)" },
+                            { filter: "hue-rotate(-35deg) contrast(1.15)" },
+                            { filter: "hue-rotate(0deg) contrast(1)" },
+                        ],
+                        { duration: 420, easing: "steps(3)" },
+                    );
+                    burst(e.clientX, e.clientY, 22);
+                    note("Reality briefly desynced");
+                };
+            }
+            if (themeButton) {
+                themeButton.onclick = (e) => {
+                    pal = (pal + 1) % palettes.length;
+                    setPal(palettes[pal]);
+                    burst(e.clientX, e.clientY, 16);
+                    note("Color matrix shifted");
+                };
+            }
             type();
             clock();
             setInterval(clock, 1000);
