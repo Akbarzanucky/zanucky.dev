@@ -3,759 +3,83 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="description" content="Zanucky portfolio coming soon" />
-        <meta name="theme-color" content="#050713" />
-        <title>Zanucky / Coming Soon</title>
-        <style>
-            :root {
-                color-scheme: dark;
-                --a: #22d3ee;
-                --b: #8b5cf6;
-                --c: #ec4899;
-                --g: #34d399;
-                --x: 50vw;
-                --y: 50vh;
-            }
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                min-height: 100vh;
-                margin: 0;
-                display: grid;
-                place-items: center;
-                overflow: hidden;
-                background: #050713;
-                color: #f8fafc;
-                font-family:
-                    ui-sans-serif,
-                    system-ui,
-                    -apple-system,
-                    "Segoe UI",
-                    Roboto,
-                    Arial,
-                    sans-serif;
-            }
-            body:before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                z-index: -2;
-                background-image:
-                    linear-gradient(#94a3b80f 1px, transparent 1px),
-                    linear-gradient(90deg, #94a3b80f 1px, transparent 1px);
-                background-size: 44px 44px;
-                transform: perspective(760px) rotateX(58deg) translateY(-12%);
-                transform-origin: top;
-                animation: grid 10s linear infinite;
-            }
-            body:after {
-                content: "";
-                position: fixed;
-                inset: 0;
-                pointer-events: none;
-                opacity: 0.2;
-                background: repeating-linear-gradient(
-                    to bottom,
-                    #fff2,
-                    #fff2 1px,
-                    transparent 1px,
-                    transparent 5px
-                );
-                mix-blend-mode: screen;
-                animation: scan 8s linear infinite;
-            }
-            @keyframes grid {
-                to {
-                    background-position:
-                        0 44px,
-                        44px 0;
-                }
-            }
-            @keyframes scan {
-                to {
-                    transform: translateY(24px);
-                }
-            }
-
-            .shell {
-                position: relative;
-                width: min(930px, calc(100vw - 28px));
-                min-height: min(760px, calc(100vh - 28px));
-                display: grid;
-                grid-template-rows: auto 1fr auto;
-                overflow: hidden;
-                border: 1px solid #ffffff24;
-                border-radius: 34px;
-                background:
-                    linear-gradient(135deg, #ffffff18, #ffffff05), #07101fb8;
-                box-shadow:
-                    0 34px 120px #0009,
-                    inset 0 1px #ffffff18;
-                backdrop-filter: blur(24px);
-            }
-            .shell:before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: radial-gradient(
-                    circle at var(--cx, 50%) var(--cy, 45%),
-                    #fff3,
-                    transparent 22rem
-                );
-                pointer-events: none;
-            }
-            .bar {
-                z-index: 1;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 12px;
-                padding: 15px 18px;
-                color: #93a4bb;
-                border-color: #ffffff24;
-                font:
-                    0.78rem ui-monospace,
-                    SFMono-Regular,
-                    Menlo,
-                    Consolas,
-                    monospace;
-                letter-spacing: 0.06em;
-                text-transform: uppercase;
-            }
-            .top {
-                border-bottom: 1px solid #ffffff24;
-            }
-            .bottom {
-                border-top: 1px solid #ffffff24;
-            }
-            .dots {
-                display: flex;
-                gap: 8px;
-            }
-            .dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: #fb7185;
-                box-shadow: 0 0 16px currentColor;
-            }
-            .dot:nth-child(2) {
-                background: #f59e0b;
-            }
-            .dot:nth-child(3) {
-                background: var(--g);
-            }
-            .online:before {
-                content: "";
-                display: inline-block;
-                width: 9px;
-                height: 9px;
-                margin-right: 8px;
-                border-radius: 50%;
-                background: var(--g);
-                box-shadow: 0 0 0 0 #34d39988;
-                animation: ping 1.6s ease-out infinite;
-            }
-            @keyframes ping {
-                to {
-                    box-shadow: 0 0 0 12px transparent;
-                }
-            }
-            .center {
-                z-index: 1;
-                position: relative;
-                display: grid;
-                place-items: center;
-                padding: clamp(20px, 4vw, 42px);
-                overflow: hidden;
-            }
-            .loader {
-                position: absolute;
-                top: clamp(16px, 5vh, 48px);
-                left: 50%;
-                width: min(460px, 68vmin);
-                aspect-ratio: 1;
-                display: grid;
-                place-items: center;
-                transform: translateX(-50%);
-            }
-            .ring {
-                position: absolute;
-                inset: var(--i);
-                border: 1px solid #94a3b830;
-                border-radius: 50%;
-                animation: spin var(--s) linear infinite;
-            }
-            .ring:before {
-                content: "";
-                position: absolute;
-                inset: -1px;
-                border: 2px solid transparent;
-                border-top-color: var(--clr);
-                border-radius: inherit;
-                filter: drop-shadow(0 0 16px var(--clr));
-            }
-            .ring:nth-child(1) {
-                --i: 0%;
-                --s: 18s;
-                --clr: var(--a);
-            }
-            .ring:nth-child(2) {
-                --i: 10%;
-                --s: 13s;
-                --clr: var(--b);
-                animation-direction: reverse;
-            }
-            .ring:nth-child(3) {
-                --i: 21%;
-                --s: 9s;
-                --clr: var(--c);
-            }
-            .ring:nth-child(4) {
-                --i: 33%;
-                --s: 6s;
-                --clr: var(--g);
-                animation-direction: reverse;
-            }
-            @keyframes spin {
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-            .core {
-                width: 54%;
-                aspect-ratio: 1;
-                border-radius: 50%;
-                display: grid;
-                place-items: center;
-                border: 1px solid #fff3;
-                background:
-                    radial-gradient(circle at 50% 35%, #fff3, transparent 30%),
-                    #020617cc;
-                box-shadow:
-                    inset 0 0 80px #22d3ee22,
-                    0 0 90px #8b5cf63d;
-            }
-            .logo {
-                position: relative;
-                padding-right: 0.13em;
-                font-size: clamp(4rem, 13vmin, 8rem);
-                font-weight: 950;
-                line-height: 0.8;
-                letter-spacing: -0.16em;
-                text-shadow:
-                    0 0 22px #22d3ee6b,
-                    0 0 56px #8b5cf659;
-                animation: glitch 5s infinite;
-            }
-            .logo:before,
-            .logo:after {
-                content: "Z";
-                position: absolute;
-                inset: 0;
-                opacity: 0.7;
-                mix-blend-mode: screen;
-            }
-            .logo:before {
-                color: var(--a);
-                transform: translate(-3px, 1px);
-                clip-path: inset(0 0 58% 0);
-            }
-            .logo:after {
-                color: var(--c);
-                transform: translate(3px, -1px);
-                clip-path: inset(56% 0 0 0);
-            }
-            @keyframes glitch {
-                0%,
-                88%,
-                100% {
-                    transform: translate(0);
-                }
-                89% {
-                    transform: translate(-2px, 1px);
-                }
-                90% {
-                    transform: translate(2px, -1px);
-                }
-                91% {
-                    transform: translate(-1px, -2px);
-                }
-            }
-            .content {
-                position: relative;
-                z-index: 1;
-                display: grid;
-                justify-items: center;
-                width: 100%;
-                padding: clamp(145px, 26vh, 220px) clamp(16px, 4vw, 34px) 0;
-                pointer-events: none;
-            }
-            h1 {
-                width: 100%;
-                margin: 0;
-                overflow: visible;
-                font-size: clamp(2.75rem, 7.2vw, 5.25rem);
-                line-height: 0.9;
-                letter-spacing: -0.035em;
-                text-align: center;
-            }
-            .shine {
-                display: inline-block;
-                max-width: 100%;
-                padding: 0 0.12em;
-                color: transparent;
-                background: linear-gradient(
-                    90deg,
-                    #fff,
-                    var(--a),
-                    var(--b),
-                    var(--c),
-                    #fff
-                );
-                background-size: 260% 100%;
-                -webkit-background-clip: text;
-                background-clip: text;
-                animation: shine 5s ease-in-out infinite;
-            }
-            @keyframes shine {
-                50% {
-                    background-position: 100% 50%;
-                }
-            }
-            p {
-                width: min(620px, 88vw);
-                margin: 14px auto 0;
-                color: #93a4bb;
-                text-align: center;
-                line-height: 1.55;
-            }
-            .terminal,
-            .progress,
-            .actions {
-                pointer-events: auto;
-            }
-            .terminal {
-                width: min(680px, 88vw);
-                margin-top: 20px;
-                border: 1px solid #ffffff24;
-                border-radius: 18px;
-                overflow: hidden;
-                background: #020617c2;
-                font:
-                    1rem ui-monospace,
-                    SFMono-Regular,
-                    Menlo,
-                    Consolas,
-                    monospace;
-            }
-            .th {
-                display: flex;
-                justify-content: space-between;
-                padding: 10px 12px;
-                border-bottom: 1px solid #ffffff24;
-                color: #93a4bb;
-                font-size: 0.74rem;
-                text-transform: uppercase;
-            }
-            .tb {
-                min-height: 58px;
-                padding: 14px 16px;
-                color: #bfffe7;
-            }
-            .prompt {
-                color: var(--a);
-            }
-            .cursor {
-                display: inline-block;
-                width: 0.58em;
-                height: 1.1em;
-                margin-left: 2px;
-                background: currentColor;
-                vertical-align: -0.18em;
-                animation: blink 1s steps(1) infinite;
-            }
-            @keyframes blink {
-                50% {
-                    opacity: 0;
-                }
-            }
-            .progress {
-                width: min(680px, 88vw);
-                margin-top: 14px;
-            }
-            .meta {
-                display: flex;
-                justify-content: space-between;
-                color: #93a4bb;
-                font:
-                    0.78rem ui-monospace,
-                    SFMono-Regular,
-                    Menlo,
-                    Consolas,
-                    monospace;
-                text-transform: uppercase;
-            }
-            .track {
-                position: relative;
-                height: 14px;
-                margin-top: 10px;
-                border: 1px solid #ffffff24;
-                border-radius: 999px;
-                background: #0f172ab8;
-                overflow: hidden;
-            }
-            .fill {
-                position: absolute;
-                inset: 2px auto 2px 2px;
-                width: var(--p, 17%);
-                border-radius: inherit;
-                background: linear-gradient(
-                    90deg,
-                    var(--a),
-                    var(--b),
-                    var(--c)
-                );
-                box-shadow: 0 0 28px #22d3ee61;
-                transition: width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-            }
-            .actions {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-                margin-top: 16px;
-            }
-            button {
-                min-height: 44px;
-                padding: 10px 15px;
-                border: 1px solid #ffffff24;
-                border-radius: 999px;
-                color: #fff;
-                background: #0f172ab3;
-                box-shadow: 0 12px 36px #0005;
-                font: inherit;
-                cursor: pointer;
-            }
-            button:hover {
-                transform: translateY(-2px);
-                border-color: #22d3ee88;
-            }
-            .primary {
-                border-color: transparent;
-                background: linear-gradient(
-                    135deg,
-                    var(--a),
-                    var(--b),
-                    var(--c)
-                );
-            }
-            .spark {
-                position: fixed;
-                z-index: 8;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                pointer-events: none;
-                background: currentColor;
-                box-shadow: 0 0 20px currentColor;
-                animation: spark 0.8s ease-out forwards;
-            }
-            @keyframes spark {
-                to {
-                    transform: translate(var(--dx), var(--dy)) scale(0);
-                    opacity: 0;
-                }
-            }
-            .toast {
-                position: fixed;
-                right: 18px;
-                bottom: 18px;
-                z-index: 20;
-                padding: 12px 14px;
-                border: 1px solid #ffffff24;
-                border-radius: 18px;
-                background: #0f172aeb;
-                opacity: 0;
-                transform: translateY(14px);
-                transition: 0.2s;
-            }
-            .toast.show {
-                opacity: 1;
-                transform: none;
-            }
-            kbd {
-                padding: 2px 6px;
-                border: 1px solid #ffffff24;
-                border-bottom-width: 2px;
-                border-radius: 7px;
-                color: #fff;
-                background: #0f172ac2;
-                font: inherit;
-            }
-            @media (max-width: 720px) {
-                body {
-                    overflow: auto;
-                }
-                .shell {
-                    min-height: calc(100vh - 20px);
-                    border-radius: 24px;
-                }
-                .bar {
-                    font-size: 0.66rem;
-                }
-                .hide {
-                    display: none;
-                }
-                .center {
-                    align-content: start;
-                    overflow: visible;
-                    padding: 18px;
-                }
-                .loader {
-                    position: relative;
-                    top: auto;
-                    left: auto;
-                    width: min(310px, 76vw);
-                    margin: 0 auto -78px;
-                    transform: none;
-                }
-                .content {
-                    padding-top: 0;
-                }
-                h1 {
-                    font-size: clamp(2.55rem, 12.5vw, 4.25rem);
-                    letter-spacing: -0.025em;
-                }
-                p {
-                    width: min(100%, 34rem);
-                }
-                .terminal,
-                .progress {
-                    width: 100%;
-                }
-                button {
-                    width: 100%;
-                }
-            }
-            @media (prefers-reduced-motion: reduce) {
-                *,
-                *:before,
-                *:after {
-                    animation-duration: 0.01ms !important;
-                    animation-iteration-count: 1 !important;
-                    transition-duration: 0.01ms !important;
-                }
-            }
-        </style>
+        <meta
+            name="description"
+            content="Zanucky, technical PM and developer. The site is being rebuilt."
+        />
+        <meta name="theme-color" content="#24606f" />
+        <title>Zanucky</title>
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <script src="assets/js/main.js" defer></script>
     </head>
     <body>
-        <main class="shell" id="shell" aria-label="Zanucky loading screen">
-            <header class="bar top">
-                <span class="dots" aria-hidden="true"
-                    ><span class="dot"></span><span class="dot"></span
-                    ><span class="dot"></span></span
-                ><span class="online">Build queued</span
-                ><span class="hide">idk</span>
-            </header>
-            <section class="center">
-                <div class="loader" aria-hidden="true">
-                    <span class="ring"></span><span class="ring"></span
-                    ><span class="ring"></span><span class="ring"></span>
-                    <div class="core"><div class="logo">Z</div></div>
-                </div>
-                <div class="content">
-                    <!--<h1><span class="shine">Huh??</span></h1>-->
-                    <p>Page is loading, starting soon..?</p>
-                    <div class="terminal" aria-label="Loading terminal">
-                        <div class="th">
-                            <span>boot.log</span
-                            ><span id="clock">00:00:00</span>
-                        </div>
-                        <div class="tb">
-                            <span class="prompt">zanucky@site</span>:~$
-                            <span id="typed"></span
-                            ><span class="cursor" aria-hidden="true"></span>
-                        </div>
-                    </div>
-                    <div class="progress" aria-label="Fake loading progress">
-                        <div class="meta">
-                            <span id="phase">Calibrating vibes</span
-                            ><span id="percent">17%</span>
-                        </div>
-                        <div class="track">
-                            <span class="fill" id="fill"></span>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <button class="primary" type="button" id="boost">
-                            Boost loading</button
-                    </div>
-                </div>
-            </section>
-            <footer class="bar bottom">
-                <span>© <span id="year"></span> Zanucky</span
-            </footer>
+        <main
+            class="tank"
+            id="tank"
+            role="img"
+            aria-label="An ASCII aquarium with fish swimming"
+        >
+            <span class="fish" style="left: 8%; top: 24%">&gt;&lt;(((º&gt;</span>
+            <span class="fish" style="left: 58%; top: 16%">&gt;&lt;&gt;</span>
+            <span class="fish koi" style="left: 34%; top: 46%">&gt;))'&gt;</span>
+            <span class="fish" style="left: 72%; top: 60%">&gt;&lt;((º&gt;</span>
+            <span class="fish" style="left: 16%; top: 68%">&gt;&lt;&gt;</span>
+            <span class="fish" style="left: 44%; top: 30%">&gt;&lt;((('&gt;</span>
+            <span class="fish" style="left: 84%; top: 38%">&gt;&lt;&gt;</span>
+            <span class="fish" style="left: 26%; top: 54%">&gt;&lt;º&gt;</span>
+            <span class="weed" style="left: 9%">)
+(
+)
+(
+)</span>
+            <span class="weed" style="left: 22%">(
+)
+(</span>
+            <span class="weed" style="left: 63%">)
+(
+)
+(</span>
+            <span class="weed" style="left: 88%">(
+)
+(
+)
+(
+)</span>
+            <span class="sand">.,·:.,;·.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,.,·:.,;·.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,.,·:.,;·.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,.,·:.,;·.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,:·.,;.·,:.,·;.,</span>
         </main>
-        <div class="toast" id="toast" role="status" aria-live="polite"></div>
-        <script>
-            const root = document.documentElement,
-                shell = document.getElementById("shell"),
-                typed = document.getElementById("typed"),
-                fill = document.getElementById("fill"),
-                percent = document.getElementById("percent"),
-                phase = document.getElementById("phase"),
-                toast = document.getElementById("toast");
-            document.getElementById("year").textContent =
-                new Date().getFullYear();
-            const phrases = [
-                    "installing neon...",
-                    "compiling impossible gradients...",
-                    "teaching buttons to behave...",
-                    "aligning pixels by moonlight...",
-                    "encrypting the secret sauce...",
-                    "preparing portfolio payload...",
-                ],
-                phases = [
-                    "Calibrating vibes",
-                    "Reticulating splines",
-                    "Charging hover states",
-                    "Polishing glass",
-                    "Summoning gradients",
-                    "Almost definitely soon",
-                ],
-                palettes = [
-                    ["#22d3ee", "#8b5cf6", "#ec4899"],
-                    ["#34d399", "#22d3ee", "#8b5cf6"],
-                    ["#f59e0b", "#fb7185", "#ec4899"],
-                    ["#a3e635", "#34d399", "#22d3ee"],
-                    ["#60a5fa", "#c084fc", "#f472b6"],
-                ];
-            let pi = 0,
-                ci = 0,
-                del = false,
-                prog = 17,
-                pal = 0;
-            function note(m) {
-                toast.textContent = m;
-                toast.classList.add("show");
-                clearTimeout(note.t);
-                note.t = setTimeout(() => toast.classList.remove("show"), 1800);
-            }
-            function type() {
-                const s = phrases[pi];
-                typed.textContent = s.slice(0, ci);
-                if (!del && ci < s.length) {
-                    ci++;
-                    setTimeout(type, 42);
-                    return;
-                }
-                if (!del) {
-                    del = true;
-                    setTimeout(type, 1050);
-                    return;
-                }
-                if (ci > 0) {
-                    ci--;
-                    setTimeout(type, 20);
-                    return;
-                }
-                del = false;
-                pi = (pi + 1) % phrases.length;
-                setTimeout(type, 180);
-            }
-            function load(n = Math.random() * 4.6) {
-                prog += n;
-                if (prog >= 99.4) prog = 17 + Math.random() * 8;
-                const r = Math.floor(prog);
-                fill.style.setProperty("--p", r + "%");
-                percent.textContent = r + "%";
-                phase.textContent =
-                    phases[Math.floor((r / 100) * phases.length)] || phases[0];
-            }
-            function clock() {
-                document.getElementById("clock").textContent =
-                    new Date().toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        second: "2-digit",
-                    });
-            }
-            function setPal(a) {
-                root.style.setProperty("--a", a[0]);
-                root.style.setProperty("--b", a[1]);
-                root.style.setProperty("--c", a[2]);
-            }
-            function burst(x, y, c = 12) {
-                for (let i = 0; i < c; i++) {
-                    const e = document.createElement("span"),
-                        ang = (Math.PI * 2 * i) / c,
-                        d = 34 + Math.random() * 64;
-                    e.className = "spark";
-                    e.style.left = x + "px";
-                    e.style.top = y + "px";
-                    e.style.color = palettes[pal][i % 3];
-                    e.style.setProperty("--dx", Math.cos(ang) * d + "px");
-                    e.style.setProperty("--dy", Math.sin(ang) * d + "px");
-                    document.body.appendChild(e);
-                    e.addEventListener("animationend", () => e.remove());
-                }
-            }
-            document.addEventListener("pointermove", (e) => {
-                root.style.setProperty("--x", e.clientX + "px");
-                root.style.setProperty("--y", e.clientY + "px");
-                const r = shell.getBoundingClientRect();
-                shell.style.setProperty(
-                    "--cx",
-                    ((e.clientX - r.left) / r.width) * 100 + "%",
-                );
-                shell.style.setProperty(
-                    "--cy",
-                    ((e.clientY - r.top) / r.height) * 100 + "%",
-                );
-            });
-            document.addEventListener("click", (e) => {
-                if (e.target.closest("button")) return;
-                burst(e.clientX, e.clientY, 10);
-            });
-            const boostButton = document.getElementById("boost"),
-                glitchButton = document.getElementById("glitch"),
-                themeButton = document.getElementById("theme");
-            if (boostButton) {
-                boostButton.onclick = (e) => {
-                    load(13 + Math.random() * 9);
-                    burst(e.clientX, e.clientY, 18);
-                    note("Loader boosted. Still coming soon.");
-                };
-            }
-            if (glitchButton) {
-                glitchButton.onclick = (e) => {
-                    document.body.animate(
-                        [
-                            { filter: "hue-rotate(0deg) contrast(1)" },
-                            { filter: "hue-rotate(75deg) contrast(1.35)" },
-                            { filter: "hue-rotate(-35deg) contrast(1.15)" },
-                            { filter: "hue-rotate(0deg) contrast(1)" },
-                        ],
-                        { duration: 420, easing: "steps(3)" },
-                    );
-                    burst(e.clientX, e.clientY, 22);
-                    note("Reality briefly desynced");
-                };
-            }
-            if (themeButton) {
-                themeButton.onclick = (e) => {
-                    pal = (pal + 1) % palettes.length;
-                    setPal(palettes[pal]);
-                    burst(e.clientX, e.clientY, 16);
-                    note("Color matrix shifted");
-                };
-            }
-            type();
-            clock();
-            setInterval(clock, 1000);
-            setInterval(() => load(), 1600);
-        </script>
+        <footer class="card">
+            <div>
+                <h1 class="sr-only">Zanucky</h1>
+                <p class="sr-only">
+                    Site under development, fish to make you entertained.
+                </p>
+                <pre aria-hidden="true">+------------------------------+
+| <b>Z A N U C K Y</b>                |
+|                              |
+| SITE UNDER DEVELOPMENT,      |
+| FISH TO MAKE YOU ENTERTAINED |
++------------------------------+</pre>
+            </div>
+            <div class="tools">
+                <button
+                    type="button"
+                    id="feed"
+                    title="Fish food (1)"
+                    aria-label="Feed the fish"
+                    aria-keyshortcuts="1"
+                ><pre aria-hidden="true">+-----+
+| ·:· |
++-----+</pre></button>
+                <button
+                    type="button"
+                    id="toggle"
+                    title="Pause (2)"
+                    aria-label="Pause the fish"
+                    aria-keyshortcuts="2"
+                ><pre aria-hidden="true">+-----+
+| <span id="toggle-icon">|| </span> |
++-----+</pre></button>
+            </div>
+        </footer>
     </body>
 </html>

@@ -1,0 +1,12 @@
+# Archived versions and working documents stay local
+archive/
+.impeccable/
+# Art and video for the full portfolio; the aquarium page doesn't use them
+public/
+*.md
+!README.md
+
+# Tooling and OS noise
+Temp/
+.DS_Store
+Thumbs.db
