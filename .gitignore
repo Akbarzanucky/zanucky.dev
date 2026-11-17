@@ -1,8 +1,7 @@
 archive/
 .impeccable/
 public/
-*.md
-!README.md
+README.md
 Temp/
 .DS_Store
 Thumbs.db
